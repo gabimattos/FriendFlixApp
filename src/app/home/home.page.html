@@ -10,21 +10,70 @@
 </ion-header>
 
 <ion-content>
-  <ion-card class="welcome-card">
-    <img src="/assets/shapes.svg" alt=""/>
+
+  <ion-card *ngFor="let post of dadosPost" class="welcome-card">
+    <!-- <img src="/assets/shapes.svg" alt=""/> -->
     <ion-card-header>
-      <ion-card-subtitle>Get Started</ion-card-subtitle>
-      <ion-card-title>Welcome to Ionic</ion-card-title>
+
+      <div class="header">
+        <div class="user">
+          <ion-card-title>{{post.nome_user}}</ion-card-title>
+          <ion-card-subtitle>{{post.username}}</ion-card-subtitle>
+        </div>
+
+        <div class="alerta">
+          <ion-icon *ngIf="post.status_spoiler" size="large" name="alert" color="warning"></ion-icon>
+        </div>
+      </div>
+
+
     </ion-card-header>
     <ion-card-content>
-      <p>
-        Now that your app has been created, you'll want to start building out features
-        and components. Check out some of the resources below for next steps.
-      </p>
+
+      <div class="texto">
+        {{post.texto}}
+      </div>
+
+      <!-- <div class="likeandunlike"> -->
+          <ion-icon size ="large" name="thumbs-up" (click)="like(post)" color="{{ post.status_like ? 'primary' : 'dark'}}"></ion-icon>{{post.num_likes}}
+          <ion-icon size ="large" name="thumbs-down" (click)="unlike(post)" color="{{ post.status_unlike ? 'primary' : 'dark'}}"></ion-icon>{{post.num_unlikes}}
+      <!-- </div> -->
+
+
+
+
+
+
+
+
+        <!-- <ion-grid>
+          <ion-row>
+            <ion-col>
+              <ion-item>
+                <p>{{post.texto}}</p>
+              </ion-item>
+            </ion-col>
+
+            <ion-col>
+              <ion-item>
+                <ion-icon size ="large" name="thumbs-up" (click)="like(post)" color="{{ post.status_like ? 'primary' : 'dark'}}"></ion-icon>
+                  <p>{{post.num_likes}}</p>
+                  <ion-icon size ="large" name="thumbs-down" (click)="unlike(post)" color="{{ post.status_unlike ? 'primary' : 'dark'}}"></ion-icon>
+                    <p>{{post.num_unlikes}}</p>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+        </ion-grid> -->
+
+
+
     </ion-card-content>
   </ion-card>
 
-  <ion-list lines="none">
+
+
+
+  <!-- <ion-list lines="none">
     <ion-list-header>
       <ion-label>Resources</ion-label>
     </ion-list-header>
@@ -44,5 +93,5 @@
       <ion-icon slot="start" color="medium" name="color-fill"></ion-icon>
       <ion-label>Theme Your App</ion-label>
     </ion-item>
-  </ion-list>
+  </ion-list> -->
 </ion-content>
